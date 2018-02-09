@@ -89,12 +89,10 @@ Page({
 
       if (userinfo.length == 0) {
 
-        var UserInfo = AV.Object.extend('UserInfo');
-        var userInfo = new UserInfo();
+        var userInfo = app.getMyUserInfo();
         userInfo.set('phone', _this.data.phone);
-        //userInfo.set('appid', appid);
-        //userInfo.set('openid', openid);
         userInfo.save().then(function (userInfo) {
+
           _this.setData({
             hiddenmodalput: true
           })
@@ -130,9 +128,12 @@ Page({
     if (reg.test(_this.data.phone)) {
 
       wx.request({//获取验证码
-        url: 'http://huayoutong.com/mobile/send_vali_message',
+        url: 'http://huayoutong.com/mobile/send_vali_message3',
         data: {
-          phoneNum: _this.data.phone
+          phoneNum: _this.data.phone,
+          content: '短信校验码：',
+          key: '8826as8'
+
         },
         header: {
           'content-type': 'application/json' // 默认值
